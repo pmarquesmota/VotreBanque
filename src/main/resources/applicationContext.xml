@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="templateEngine"
+		class="org.thymeleaf.spring4.SpringTemplateEngine">
+		<property name="additionalDialects">
+			<set>
+				<bean class="nz.net.ultraq.thymeleaf.LayoutDialect" />
+			</set>
+		</property>
+	</bean>
+	<bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+		<property name="templateEngine" ref="templateEngine" />
+		<!-- NOTE 'order' and 'viewNames' are optional -->
+		<property name="order" value="1" />
+		<property name="viewNames" value="*.html,*.xhtml" />
+	</bean>
+</beans>
