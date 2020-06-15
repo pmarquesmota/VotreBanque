@@ -2,6 +2,7 @@ package org.sid.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Optional;
 
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -51,11 +52,11 @@ public abstract class Operation implements Serializable{
 	public void setCompte(Compte compte) {
 		this.compte = compte;
 	}
-	public Operation(Date dateOperation, double montant, Compte compte) {
+	public Operation(Date dateOperation, double montant, Compte cp) {
 		super();
 		this.dateOperation = dateOperation;
 		this.montant = montant;
-		this.compte = compte;
+		this.compte = cp;
 	}
 	public Operation() {
 		super();

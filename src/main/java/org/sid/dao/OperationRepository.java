@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface OperationRepository extends JpaRepository<Operation, Long>{
-	@Query(nativeQuery = true, value= "select o from operation o where o.compte.codeCompte=:x order by o.dateOperation desc")
+	@Query(nativeQuery = true, value= "select * from operation o where o.code_cpte=:x order by o.date_operation desc")
 	public Page<Operation> listOperation(@Param("x") String codeCpte, Pageable pageable);
 }

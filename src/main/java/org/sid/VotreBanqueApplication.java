@@ -41,11 +41,12 @@ public class VotreBanqueApplication implements CommandLineRunner {
 	}
 
 	public void run(String... args) throws Exception {
+		
 		Client c1 = clientRepository.save(new Client("Paul", "pmarquesmota@gmail.com"));
 		Client c2 = clientRepository.save(new Client("Paul-work", "paul@munci.org"));
 		
-		Compte cp1 = compteRepository.save(new CompteCourant("c1", new Date(), 10000, c1, 6000)); 
-		Compte cp2 = compteRepository.save(new CompteEpargne("c2", new Date(), 6000, c2, 5.5));
+		CompteCourant cp1 = compteRepository.save(new CompteCourant("c1", new Date(), 10000, c1, 6000)); 
+		CompteEpargne cp2 = compteRepository.save(new CompteEpargne("c2", new Date(), 6000, c2, 5.5));
 		
 		operationRepository.save(new Versement(new Date(), 5000, cp1));
 		operationRepository.save(new Versement(new Date(), 5000, cp1));

@@ -1,5 +1,7 @@
 package org.sid.metier;
 
+import java.util.Optional;
+
 import org.sid.entities.Compte;
 import org.sid.entities.Operation;
 import org.springframework.data.domain.Page;

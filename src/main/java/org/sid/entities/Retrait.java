@@ -1,6 +1,7 @@
 package org.sid.entities;
 
 import java.util.Date;
+import java.util.Optional;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -13,8 +14,8 @@ public class Retrait extends Operation{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Retrait(Date dateOperation, double montant, Compte compte) {
-		super(dateOperation, montant, compte);
+	public Retrait(Date dateOperation, double montant, Compte cp) {
+		super(dateOperation, montant, cp);
 		// TODO Auto-generated constructor stub
 	}
 
