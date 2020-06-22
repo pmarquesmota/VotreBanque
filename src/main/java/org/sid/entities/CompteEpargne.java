@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("CE")
 public class CompteEpargne extends Compte{
-	private double taux;
+	public double taux;
 
 	public CompteEpargne() {
 		super();

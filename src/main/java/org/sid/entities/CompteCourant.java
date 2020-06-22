@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("CC")
 public class CompteCourant extends Compte{
-	private double decouvert;
+	public double decouvert;
 
 	public CompteCourant() {
 		super();

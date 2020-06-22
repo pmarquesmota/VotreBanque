@@ -47,13 +47,13 @@
 							</div>
 							<div>
 								<label>Type :</label>
-								<label th:text=${Compte.class.simpleName}></label>
+								<label th:text=${Compte.type_cpte}></label>
 							</div>
-							<div th:if="${Compte.class.simpleName=='CompteCourant'}">
+							<div th:if="${Compte.type_cpte=='CC'}">
 								<label>Découvert :</label>
 								<label th:text=${Compte.decouvert}></label>
 							</div>
-							<div th:if="${Compte.class.simpleName=='CompteEpargne'}">
+							<div th:if="${Compte.type_cpte=='CE'}">
 								<label>Taux :</label>
 								<label th:text=${Compte.taux}></label>
 							</div>
