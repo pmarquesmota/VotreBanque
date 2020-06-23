@@ -3,6 +3,8 @@ package org.sid.metier;
 import java.util.Date;
 import java.util.Optional;
 
+import javax.websocket.server.PathParam;
+
 import org.sid.dao.CompteRepository;
 import org.sid.dao.OperationRepository;
 import org.sid.entities.Compte;
@@ -29,7 +31,8 @@ public class BanqueMetierImpl implements IBanqueMetier {
 	
 	@Override
 	public Compte consulterCompte(String codeCpte) {
-		Compte cp = compteRepository.getOne(codeCpte);
+		Optional<Compte> x = compteRepository.findById(codeCpte);
+		Compte cp = x.get();
 		if(cp==null) throw new RuntimeException("Compte introuvable");
 		return cp;
 	}
