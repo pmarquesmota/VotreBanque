@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	layout:decorate="template1" />
 <head th:replace="template1 :: common_header(~{::title})">
 <meta charset="UTF-8" />
@@ -47,23 +48,68 @@
 							</div>
 							<div>
 								<label>Type :</label>
-								<label th:text=${Compte.type_cpte}></label>
+								<label th:text=${Compte.class.simpleName}></label>
 							</div>
-							<div th:if="${Compte.type_cpte=='CC'}">
+							<div th:if="${Compte.class.simpleName=='CompteCourant'}">
 								<label>Découvert :</label>
 								<label th:text=${Compte.decouvert}></label>
 							</div>
-							<div th:if="${Compte.type_cpte=='CE'}">
+							<div th:if="${Compte.class.simpleName=='CompteEpargne'}">
 								<label>Taux :</label>
 								<label th:text=${Compte.taux}></label>
 							</div>
 						</p>
 					</div>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-6"  th:if="${#strings.contains(#authentication.principal.authorities,'ADMIN')}" >
 					<div class="card m-3" th:if="${Compte}">
 						<div class="card-header">Opérations sur le compte</div>
-						<p class="card-text"></p>
+						<p class="card-text">
+							<form th:action="@{/saveOperation}" method="post">
+								<div>
+									<label>Compte :</label>
+									<input type="hidden" name="codeCompte" th:value="${codeCompte}" />
+									<label th:text="${codeCompte}"></label>
+								</div>
+								<div>
+									<input 
+										type="radio" 
+										name="typeOperation" 
+										value="VERS" 
+										checked="checked" 
+										onchange="document.getElementById('forVirement').style.display='none'"
+									/>
+									<label>Versement</label>
+									<input 
+										type="radio" 
+										name="typeOperation" 
+										value="RET"
+										onchange="document.getElementById('forVirement').style.display='none'"
+									/>
+									<label>Retrait</label>
+									<input 
+										type="radio" 
+										name="typeOperation" 
+										value="VIR"
+										onchange="document.getElementById('forVirement').style.display='block'"
+									/>
+									<label>Virement</label>
+								</div>
+								<div id="forVirement" style="display:none;">
+									<label>Vers :</label>
+									<input type="text" name="codeCompte2">
+								</div>
+								<div>
+									<label>Montant :</label>
+									<input type="text" name="montant">
+								</div>
+								<div 
+									class="text-danger" 
+									th:text="${#httpServletRequest.getParameter('error')}"
+								></div>
+								<button type="submit" class="btn btn-primary">Save</button>
+							</form>
+						</p>
 					</div>
 					<div class="card m-3" th:if="${Compte}">
 						<div class="card-header">Liste des opérations</div>
@@ -72,13 +118,20 @@
 								<tr>
 									<th>Num</th><th>Type</th><th>Date</th><th>Montant</th>
 								</tr>
-								<tr th:each="o:${ListOperations}">
-									<td th:text="o.numero"></td>
-									<td th:text="o.class.simpleName"></td>
-									<td th:text="o.dateOperation"></td>
-									<td th:text="o.montant"></td>
+								<tr th:each="o:${listOperations}">
+									<td th:text="${o.numero}"></td>
+									<td th:text="${o.class.simpleName}"></td>
+									<td th:text="${o.dateOperation}"></td>
+									<td th:text="${o.montant}"></td>
 								</tr>
 							</table>
+							<div class="container">
+								<ul class="nav nav-pills">
+									<li class="nav-item" th:each="p,status:${pages}">
+										<a th:href="@{/consulterCompte(codeCompte=${codeCompte},page=${status.index})}" class="nav-link" th:text="${status.index}"></a>
+									</li>
+								</ul>
+							</div>
 						</p>
 					</div>
 				</div>

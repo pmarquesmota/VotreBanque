@@ -15,5 +15,13 @@
 		<!-- NOTE 'order' and 'viewNames' are optional -->
 		<property name="order" value="1" />
 		<property name="viewNames" value="*.html,*.xhtml" />
+		<property name="additionalDialects">
+			<set>
+				<!-- Note the package would change to 'springsecurity[3|4]' if you are 
+					using that version -->
+				<bean
+					class="org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect" />
+			</set>
+		</property>
 	</bean>
 </beans>

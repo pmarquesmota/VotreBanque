@@ -41,7 +41,7 @@ public class VotreBanqueApplication implements CommandLineRunner {
 	}
 
 	public void run(String... args) throws Exception {
-		
+		/*
 		Client c1 = clientRepository.save(new Client("Paul", "pmarquesmota@gmail.com"));
 		Client c2 = clientRepository.save(new Client("Paul-work", "paul@munci.org"));
 		
@@ -59,6 +59,7 @@ public class VotreBanqueApplication implements CommandLineRunner {
 		operationRepository.save(new Retrait(new Date(), 7000, cp2));
 		
 		banqueMetier.verser("c1", 11111);
+		*/
 	}
 
 }

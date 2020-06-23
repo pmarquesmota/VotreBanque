@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="template1" />
+<head th:replace="template1 :: common_header(~{::title})">
+<meta charset="UTF-8" />
+<title>Ma banque</title>
+</head>
+<body
+	layout:include="template1 :: modal(modalId='message', modalHeader='Message')"
+	th:remove="tag">
+	<div layout:fragment="content">
+		<div style="height: 100vh"
+			class="d-flex align-items-center justify-content-center">
+			<div class="card md-4">
+				<div class="card-header">Accès refusé</div>
+				<p class="card-text">
+				<div class="text-danger">
+					Vous n'avez pas le droit de faire
+					cette action.
+				</div>
+				</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
