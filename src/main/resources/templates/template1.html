@@ -21,11 +21,15 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav">
-					<a class="nav-item nav-link" th:href="@{/operations}">Opérations</a> 
-					<a class="nav-item nav-link" th:href="@{/comptes}">Comptes</a>
-					<a class="nav-item nav-link" th:href="@{/clients}">Clients</a>
+					<a class="nav-item nav-link" th:href="@{/operations}">Opérations</a>
+					<a class="nav-item nav-link" th:href="@{/comptes}">Comptes</a> <a
+						class="nav-item nav-link" th:href="@{/clients}">Clients</a>
 				</div>
 			</div>
+			<ul class="nav justify-content-end">
+				<li class="nav-item"><a class="nav-link active" href="#">Active</a>
+				</li>
+			</ul>
 		</nav>
 	</header>
 	<section layout:fragment="content"></section>
